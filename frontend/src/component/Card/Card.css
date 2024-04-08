@@ -1,0 +1,7 @@
+body {
+    background-color: #eee;
+  }
+
+  .success-btn :hover{
+    color: rgb(39, 235, 72);
+  }
