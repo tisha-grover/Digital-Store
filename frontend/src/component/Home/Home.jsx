@@ -29,7 +29,7 @@ function Home() {
                     </MDBCol>
                     <MDBCol className='w-25 max-height: 100%' >
                         <Card 
-                        imgcard="https://i.postimg.cc/qqgg7mnD/13.webp" 
+                        imgcard="https://i.postimg.cc/B67Ykzrc/13.webp" 
                         name="Dell Xtreme 270"
                         product="Laptop"
                         Price="40,000"/>
@@ -37,7 +37,7 @@ function Home() {
                     </MDBCol>
                     <MDBCol className='w-25'>
                         <Card 
-                        imgcard="https://i.postimg.cc/NMxBwRzJ/18.jpg" 
+                        imgcard="https://i.postimg.cc/3Rq1nvGt/18.jpg" 
                         name="Dell Xtreme 270"
                         product="Laptop"
                         Price="40,000"/>
@@ -108,7 +108,7 @@ function Home() {
                     Price="80,000"/>
                 </MDBCol>
                 <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/B6hmqGRn/17.jpg" 
+                    <Card imgcard="https://i.postimg.cc/qqL8W66f/3.jpg" 
                     name="Canon D3500"
                     product="DSLR"
                     Price=""/>

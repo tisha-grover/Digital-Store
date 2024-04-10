@@ -1,9 +1,10 @@
-const UserInfo = require("./models/user.model.js");
+const UserInfo = require("../models/user.model.js");
 
 const loginUser = async (req, res) => {
   const { username, password } = req.body;
   try {
       const user = await UserInfo.findOne({ username, password });
+      console.log("login req called")
       if (user) {
           res.status(200).json({ message: 'Login successful' });
       } else {

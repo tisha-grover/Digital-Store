@@ -9,6 +9,11 @@ const UserInfo = mongoose.Schema({
     type: String,
     required: [true, "Please Enter Password"],
   },
+  email: {
+    type: String,
+    required: false,
+  },
+
 },
 {
     timestamps: true,
