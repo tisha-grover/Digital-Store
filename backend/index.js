@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors"); 
 const RegisterRoute = require("./routes/register.route.js");
 const LoginRoute = require("./routes/login.route.js");
+const ProductRoute = require("./routes/product.route.js");
 const app = express();
 
 // Enable CORS for all routes which is enforced by browsers.
@@ -31,6 +32,7 @@ mongoose
 // Routes
 app.use("/api/register", RegisterRoute);
 app.use("/api/login", LoginRoute);
+app.use("/api/product", ProductRoute);
 
 // API Endpoint for fetching data
 app.get("/", async (req, res) => {

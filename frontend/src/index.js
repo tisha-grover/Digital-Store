@@ -8,18 +8,29 @@ import Login from './component/Login/Login';
 import reportWebVitals from './reportWebVitals';
 import Register from './component/Register/Register';
 import Home from './component/Home/Home';
+import { UsernameProvider } from './component/Utils/UsernameContext';
+import ToAddProduct from './component/ToAddProduct/ToAddProduct';
 import Cart from './component/Cart/Cart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-
+    <UsernameProvider>
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/addproduct" element={<ToAddProduct />} />
+        <Route path="/cart" element={<Cart />} />
+        {/* <Route
+          exact
+          path="/admin/reviews"
+          isAdmin={true}
+          component={ProductReviews}
+        /> */}
       </Routes>
+      </UsernameProvider>
     </Router>
   </React.StrictMode>
 );

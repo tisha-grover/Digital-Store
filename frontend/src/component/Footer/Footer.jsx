@@ -8,7 +8,7 @@ import {
 
 export default function Footer() {
   return (
-    <MDBFooter className='bg-dark text-center text-white '>
+    <MDBFooter className='bg-dark text-center text-white ' id='contact-section'>
       <MDBContainer className='p-4 pb-0'>
         <section className='mb-4'>
           <MDBBtn outline color="light" floating className='m-2' href='https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox' role='button'>

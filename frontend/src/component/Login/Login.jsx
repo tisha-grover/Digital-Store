@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import UsernameContext from '../Utils/UsernameContext';
 import {
   MDBContainer,
   MDBCol,
@@ -15,8 +15,14 @@ import { LinkContainer } from "react-router-bootstrap";
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const {loggedInUsername, setLoggedInUsername } = useContext(UsernameContext);
+  // const { loggedInUsername } = useContext(UsernameContext);
   const [alert, setAlert] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("loggedInUsername:", loggedInUsername);
+  }, [loggedInUsername]);
 
   const handleSubmit = async (e) => {
       e.preventDefault();
@@ -35,6 +41,8 @@ function Login() {
             console.log("Login successful")
               // Login successful
               setAlert({ type: 'success', message: data.message });
+              setLoggedInUsername(username);
+              console.log("logged in" + loggedInUsername);
               setTimeout(function(){
                 // Redirect to home page
               navigate('/home');
@@ -65,7 +73,7 @@ function Login() {
         <MDBCol col="10" md="6">
           <img
             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-            class="img-fluid"
+            className="img-fluid"
             alt="Phone"
           />
         </MDBCol>

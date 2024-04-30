@@ -1,125 +1,71 @@
-import React from 'react';
-import NavBar from '../NavBar/NavBar';
-import Footer from '../Footer/Footer';
-import Card from '../Card/Card';
-import SlideShow from '../SlideShow/SlideShow';
-import {
-    MDBContainer,
-    MDBRow,
-    MDBCol
-} from "mdb-react-ui-kit";
+import React, { useState, useEffect } from "react";
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
+import Card from "../Card/Card";
+import SlideShow from "../SlideShow/SlideShow";
+import AddCart from "../AddCart/AddCart";
+import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 function Home() {
-    return (
-        <>
-            <NavBar />
-            <SlideShow />
-            <br /><br />
-            <MDBContainer >
-                <MDBRow className='row-cols-1 row-cols-md-3 g-4 '>
-                    <h1 className='mx-auto w-100 d-flex '>Laptops</h1>
-                    <hr className='w-100' />
-                    <br />
-                    <MDBCol className='w-25'>
-                        <Card 
-                        imgcard="https://i.postimg.cc/WzHWLDvW/11.webp" 
-                        name="Dell Xtreme 270"
-                        product="Laptop"
-                        Price="40,000"/>
-                        
-                    </MDBCol>
-                    <MDBCol className='w-25 max-height: 100%' >
-                        <Card 
-                        imgcard="https://i.postimg.cc/B67Ykzrc/13.webp" 
-                        name="Dell Xtreme 270"
-                        product="Laptop"
-                        Price="40,000"/>
-                        
-                    </MDBCol>
-                    <MDBCol className='w-25'>
-                        <Card 
-                        imgcard="https://i.postimg.cc/3Rq1nvGt/18.jpg" 
-                        name="Dell Xtreme 270"
-                        product="Laptop"
-                        Price="40,000"/>
-                        
-                    </MDBCol>
-                    <MDBCol className='w-25'>
-                        <Card 
-                        imgcard="https://i.postimg.cc/VNtc78jP/10.avif" 
-                        name="Dell Latitude 7000"
-                        product="Laptop"
-                        Price="50,000"/>
-                        
-                    </MDBCol>
-                    
-                </MDBRow>
-            </MDBContainer>
-            <MDBContainer >
-            <MDBRow className='row-cols-1 row-cols-md-3 g-4 '>
-                <h1 className='p-4  w-100 d-flex'>Tabs</h1>
-                <hr className='w-100' />
-                <br />
-                <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/bv4fc3g9/1.webp" 
-                    name="Lenovo"
-                    product="Tab"
-                    Price="40,000"/>
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      // Fetch data from API
+      const response = await fetch("http://localhost:3001/api/product");
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const data = await response.json();
+      // Set the fetched products in state
+      setProducts(data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  return (
+    <>
+      <NavBar />
+      <SlideShow />
+      <br />
+      <br />
+      {/* Map through product categories and render cards */}
+      {Object.entries(products).map(([category, categoryProducts]) => (
+        <MDBContainer>
+          <MDBRow className="row-cols-1 row-cols-md-3 g-4 " key={category}>
+            <h1 className="mx-auto w-100 d-flex ">{category}</h1>
+            <hr className="w-100" />
+            <br />
+            {Array.isArray(categoryProducts) ? (
+              // If categoryProducts is an array, map over it and render Card components
+              categoryProducts.map((product, index) => (
+                <MDBCol key={index} className="w-25">
+                  <Card
+                    imgcard={product.image}
+                    name={product.name}
+                    product={product.product}
+                    Price={product.Price}
+                    id={product.id}
+                  />
                 </MDBCol>
-                <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/fyfmw7Vj/2.avif" 
-                    name="Lenovo"
-                    product="Tab"
-                    Price="40,000"/>
-                </MDBCol>
-                <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/fyfmw7Vj/2.avif" 
-                    name="Lenovo"
-                    product="Tab"
-                    Price="40,000"/>
-                </MDBCol>
-                <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/J75kHqhj/17.jpg" 
-                    name="Ipad"
-                    product="Ipad"
-                    Price="70,000"/>
-                </MDBCol>
-              
-            </MDBRow>
-            <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
-                <h1 className='mx-auto w-100 d-flex '>DSLR</h1>
-                <hr className='w-100' />
-                <br />
-                <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/BvPS5qcd/3.jpg" 
-                    name="Canon EOS 90D"
-                    product="DSLR"
-                    Price="80,000"/>
-                </MDBCol>
-                <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/BvPS5qcd/3.jpg" 
-                    name="Canon EOS 90D"
-                    product="DSLR"
-                    Price="80,000"/>
-                </MDBCol>
-                <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/BvPS5qcd/3.jpg" 
-                    name="Canon EOS 90D"
-                    product="DSLR"
-                    Price="80,000"/>
-                </MDBCol>
-                <MDBCol className='w-25'>
-                    <Card imgcard="https://i.postimg.cc/qqL8W66f/3.jpg" 
-                    name="Canon D3500"
-                    product="DSLR"
-                    Price=""/>
-                </MDBCol>
-                
-            </MDBRow>
-            </MDBContainer>
-            
-            <br /><br />
-            <Footer />
-        </>
-    );
+              ))
+            ) : (
+              // If categoryProducts is not an array, render an error message or handle it as needed
+              <p>Error: Unable to fetch products for this category</p>
+            )}
+          </MDBRow>
+        </MDBContainer>
+      ))}
+
+      <br />
+      <br />
+      <AddCart />
+      <Footer />
+    </>
+  );
 }
 export default Home;
