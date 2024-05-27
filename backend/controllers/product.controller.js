@@ -33,8 +33,7 @@ const getProducts = async (req, res) => {
 const getCartProducts = async (req, res) => {
   try {
     // Retrieve username from the request parameters
-    const { username } = req.params;
-    console.log(username);
+    const { username } = req.body;
     // Find the user in the User model based on the username
     const user = await User.findOne({ username });
     if (!user) {

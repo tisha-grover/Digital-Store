@@ -42,7 +42,7 @@ function Card(props) {
 
   const handleRemoveFromCart = () => {
     fetch("http://localhost:3001/api/product/removeFromCart", {
-      method: "Get",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
